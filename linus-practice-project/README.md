@@ -5,11 +5,11 @@ sudo stands for super user do. This command grants the user admin rights after p
 
 Type  `sudo apt-get` in the terminal to use the command.
 
-|[sudo command](./img/1.sudo.png)
+![sudo command](./img/1.sudo.png)
 
 ## pwd command
 Present working directory is a command used for printing out the present directory.
-
+S
 |[pwd](./img/2.pwd.png)
 
 ## ls command
