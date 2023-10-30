@@ -56,4 +56,77 @@ Check to see if your apache2 was properly installed with this command
 
 ![apache status](./img/2.%20apache%20status.png)
 
-Now we need to enable our virtual server to access web traffic. To do that, we add a new inbound rule in our EC2 instance.
+Now we need to enable our virtual server to access web traffic. To do that, we add a new inbound rule in our EC2 instance. Go to your instance, click on the instance ID, go down to security, click on security group, edit in inbound rule. Add a new inbound rule, type should be HTTP and port 80.
+
+Now check if you can reach apache on the server from your terminal, to do that, run the curl command
+
+`$ curl http://localhost:80
+or
+$ curl http://127.0.0.1:80
+`
+
+You should get the screen below.
+
+![curl apache](./img/3.%20curl%20web%20server.png)
+
+Now lets see if we can access the same web server from our browser. Enter the public IP address from your EC2 console. You should see the screen below.
+
+![apache page](./img/4.request%20apache%20over%20internet.png)
+
+# Step 3 - Install MySQL Server
+Now we need a database management system (DBMS) to store and manage our data.
+
+Run the following command to `$ sudo apt install mysql-server`
+
+![install mysql](./img/5.%20install%20mysql-server.png)
+
+Confirm installation with this command `$ sudo mysql`
+
+This will connnect you to the MySQL database server as the administartive root user.
+Set a password for the root user with the following command 
+
+`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';`
+
+
+Exit the MySQL shell with the exit command.
+
+Start the interactive script by running
+`$ sudo mysql_secure_installation`.
+
+![secure installation](./img/7.%20secure%20installation.png)
+
+This will ask you if you want tp validate password plugin. This means you have to set a password different from the root password. Click yes and choose your password.
+
+Test the new password with this command 
+
+`$ sudo mysql -p`
+
+![login with password](./img/8.%20login%20mysql%20with%20password.png)
+
+Exit the MySQL console.
+
+# Step 4 - Install PHP
+PHP is a programming language that lets us control the logic of how web pages are served.
+
+To install PHP and its dependencies, run the following command:
+
+`$ sudo apt install php libapache2-mod-php php-mysql`
+
+![download php](./img/9.%20Download%20php.png)
+Confirm installation
+
+`php -v`
+
+![php version](./img/10.%20php%20version.png).
+
+At this point your lamp stack setup is completed
+
+- Linux
+- Apache
+- MySQL
+- PHP
+
+You can go further and confirm the entire stack by deploying a PHP code.
+
+
+
