@@ -128,5 +128,49 @@ At this point your lemp stack setup is completed
 
 You can go further and confirm the entire stack by deploying a PHP code.
 
+## Testing PHP with Nginx
+We are going to create a PHP file and execute that file on the browser. Create an index.php file at the root of your machine. Since we are using an Ubuntu machine, root path is `/var/wwww/html`. We are going to create an index.php file in the above directory and add a simple php code.
 
+`$ echo "<?php phpinfo(); ?>" >> /var/www/html/index.php`
 
+This will create an index.php file inside the above folder and a script that displays php info on the browser.
+
+Change the permissions of the directory so it can be accessed by Nginx.
+
+`sudo chmod -R 777 /var/www/html/index.php`
+
+Edit the Nginx config file by running 
+
+`sudo nano /etc/nginx/sites-available/default`
+
+add your public server IP and add index.php to route path. The completed file should look like the image below.
+
+![nginx config](./img/Nginx%20config%20file.png)
+
+Go to your browser and enter your-ip-address/index.php. The PHP info should show up like the image below.
+
+![php info page](./img/php%20info.png)
+
+## Step 5 - Retrieving Data from MySQL
+In this step will create a test database (DB) with simple "To do list" and configure access to it, so the Nginx websire would be able to query data from the DB and display it.
+
+Let us create an task_database and a user named task_user.
+First connect to the MySQL console using the password we created before:
+
+`sudo mysql -p`
+
+To create a database, run the following command
+
+`CREATE DATABASE `task_database``
+
+![create DB](./img/create%20database.png)
+
+Create a new user and grant full access to the database
+
+`mysql>  CREATE USER 'task_user'@'%' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+`
+
+Give this user permission over the task_database.
+
+`mysql> GRANT ALL ON task_database.* TO 'task_user'@'%';
+`
