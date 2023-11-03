@@ -1,0 +1,11 @@
+dareyScript.sh
+file1.txt
+file2.txt
+file3.txt
+img
+navigating-linux-filesystem.sh
+README.md
+sorted_files_sorted_alphabethically.txt
+sorted_files.txt
+sorting.sh
+user-input.sh
